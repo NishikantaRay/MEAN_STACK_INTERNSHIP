@@ -1,0 +1,18 @@
+#mainpage{
+    border: 2px solid black;
+    padding-top: 30px; 
+    padding-bottom: 30px; 
+    width: 40%;margin-left: 32%;
+}
+#img{
+    width:200px;
+    height:200px;
+    border-radius: 50%; 
+    margin-left: 32%;
+}
+#details{
+    text-align: center;
+}
+#edu{
+    padding-left: 20%;
+}
