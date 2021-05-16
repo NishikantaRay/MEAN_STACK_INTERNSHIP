@@ -1,8 +1,12 @@
 #mainpage{
-    border: 2px solid black;
+    border: 5px solid rgb(236, 231, 231);
     padding-top: 30px; 
     padding-bottom: 30px; 
+    padding-left: 10px;
+    padding-right: 10px;
     width: 40%;margin-left: 32%;
+    border-radius: 15px;
+    background-image: linear-gradient(to right top, #01070f, #0e172d, #291d46, #521a54, #7e0054);
 }
 #img{
     width:200px;
@@ -15,4 +19,13 @@
 }
 #edu{
     padding-left: 20%;
+}
+
+body{
+    color: rgb(253, 252, 252);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* padding-top: 14px; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('https://motionarray.imgix.net/preview-133214-E4lLFpItNm-high_0014.jpg?w=750&q=60&fit=max&auto=format');
 }
