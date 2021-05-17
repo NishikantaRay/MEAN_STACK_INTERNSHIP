@@ -1,0 +1,106 @@
+/* login page */
+input[type=text], input[type=password] ,input[type=email] ,input[type=tel] ,#textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    width: 40%;
+    display: inline-block;
+    box-sizing: border-box;
+    background: #ecf0f3;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #fff;
+    border-radius: 15px;
+}
+::placeholder{
+    color: #2ba4f2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#btn{
+    width: 15%;
+    margin-left: 13%;
+}
+#newuser{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 13%;
+    color: #2ba4f2;
+}
+button {
+    background-color: #2ba4f2;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    width: 100%;
+}   
+button:hover {
+    opacity: 0.8;
+}
+.loginbox {
+    padding: 16px;
+}
+.mainpage{
+    margin-left: 33%;
+    padding-top: 10%;
+    position: absolute;
+    width: 80%;
+}
+#heading{
+    margin-left: 15%;
+    color: #2ba4f2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#loginpage{
+    background-color: #ecf0f3;
+    margin-left: 430px;
+    width: 35%;
+    height: 80%;
+    box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px #fff;
+    box-sizing: border-box;
+    border-radius: 15px;
+    position: absolute;
+    margin-top: 50px;
+    padding: 40px; 
+}
+
+/* login page end */
+
+/* signup page */
+#signuppage{
+    padding-left: 8%;
+    padding-top: 45px;
+    position: absolute;
+    width: 100%;
+}
+.signup{
+    background-color: #ecf0f3;
+    margin-left: 90px;
+    width: 85%;
+    height: 80%;
+    box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px #fff;
+    box-sizing: border-box;
+    border-radius: 15px;
+    position: absolute;
+    margin-top: 50px;
+    padding: 40px;
+}
+#right{
+    margin-left: 25px;
+}
+#headingpage{
+    margin-left: 35%;
+    color: #2ba4f2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#btn-submit{
+    width: 15%;
+    margin-left: 35%;
+    background-color: #2ba4f2;
+}
+#textarea{
+    margin-left: 42%;
+    margin-top: -38%;
+    padding-top: -30px;
+}
+body{
+    background-image: url('cool-background.png');
+}
