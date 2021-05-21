@@ -54,7 +54,7 @@ function sign(x,y,z) {
     let mul = x*y*z;
     if(mul>0){
         document.write("<br>");
-        document.write("Possitive");
+        document.write("Positive");
         console.log("Possitive");
     }else{
         document.write("<br>");
