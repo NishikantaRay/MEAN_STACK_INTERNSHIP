@@ -1,0 +1,34 @@
+.my-form{
+    padding: 25px;
+    border-radius: 10px;
+    background: transparent;
+    box-shadow: 6px 6px 14px 0 rgba(0, 0, 0, 0.2),
+    -8px -8px 18px 0 rgba(255, 255, 255, 0.55);
+  border-radius: 40px;
+}
+input[type=text] ,input[type=date],.selecttag{
+    border-radius: 10px;
+    box-shadow: 6px 6px 14px 0 rgba(0, 0, 0, 0.2),
+    -8px -8px 18px 0 rgba(255, 255, 255, 0.55);
+    background: #e6e6e6;
+    color: rgb(85, 85, 84);
+    
+}
+.select_tag ,.input-group-text{
+    border-radius: 10px;
+    box-shadow: 6px 6px 14px 0 rgba(0, 0, 0, 0.2),
+    -8px -8px 18px 0 rgba(255, 255, 255, 0.55);
+    background: #e6e6e6;
+    color: rgb(85, 85, 84);
+}
+*{
+    background: #e6e6e6;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    background: #e6e6e6;
+    padding-top: 7%;
+}
+::placeholder{
+    color: rgb(255, 255, 246);;
+}

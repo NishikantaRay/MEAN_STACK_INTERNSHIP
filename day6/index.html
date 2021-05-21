@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Form handler</title>
+  </head>
+  <body>
+    <div class="container my-4 my-form mt-4 " >
+        <div class="alert alert-danger d-none" id="err"></div>
+        <div class="text-center  mb-4">
+            <h3 class="heading" style="font-weight: 800; color: #f13c20;">EMPLOYEE REGISTRATION PORTAL</h3> 
+        </div>
+        <form action="#" id="ex-form">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" value="" id="Input1" placeholder=" Enter your Name ">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" value="" id="Input2" placeholder=" Enter your Department ">
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="Input3" placeholder=" Enter your ID ">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="Input4" placeholder=" Enter your Salary ">
+                    </div>
+                </div>
+            </div>
+            <div class="selecttag text-center mb-4">
+                <select class="form-select select_tag" id="optionsel" aria-label="Default select example">
+                    <option selected>Designation</option>
+                    <option value="jrEngg">JrEngg</option>
+                    <option value="Dba">Dba</option>
+                    <option value="SrEngg">SrEngg</option>
+                  </select>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Birth year</span>
+                        <input type="text" class="form-control" id="input5" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon4">Joining year</span>
+                        <input type="text" class="form-control" id="input6" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-3 mx-auto">
+                <button class="btn " style="color: #fff; background-color: #f13c20;" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>    
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    </body>
+</html>
