@@ -2,24 +2,21 @@ const express = require('express');
 const fs=require('fs');
 const router =express.Router();
 const post = require('../models/posts');
-var studentData=[];
-router.get('/', function (req, res) {
-    if(fs.existsSync('./student.json')){
-        const studentBuffer=fs.readFileSync('./student.json');
-        if(studentBuffer.length !=0){
-            studentData=JSON.parse(studentBuffer)
-            res.status(200).json({
-                message:"Data fetched successfully" ,
-                posts:studentData
-            })
-        } else{
-            res.status(404).json({
-                message:"No data found" })
-        }
-    } else{
-        res.status(404).json({
-            message:"No data found" })
+
+router.get('/', async(req, res)=> {
+    try {
+        const posts = await post.find();
+        res.status(200).json({
+            message:"posts fetched successfully",
+            postData:posts
+        })
+    } catch (err) {
+        res.status(500).json({
+            message:"something went wrong",
+            error:err 
+        })
     }
+    
 })
 
 
@@ -31,7 +28,7 @@ router.post("/save",async(req,res)=>{
         postAuthor : req.body.pauthor,
     }
     try {
-        const posts = new Post(postObj);
+        const posts = new post(postObj);
         console.log(posts);
         await posts.save();
         res.status(200).json({
@@ -44,67 +41,77 @@ router.post("/save",async(req,res)=>{
             error:err 
         })
     }
-    
 })
 
-router.put("/update/:studentId",(req,res)=>{
-    const id = req.params.studentId;
-    const studentobj ={
-        studentId : req.body.sid,
-        studentName : req.body.sname,
-        studentEmail : req.body.semail,
-        studentClass :req.body.sclass,
-        studentDepart :req.body.sdept
+router.put("/update/:id",async(req,res)=>{
+    const id = req.params.id;
+    const postObj ={
+        postTitle : req.body.ptitle,
+        postDes : req.body.pdesc,
+        postAuthor : req.body.pauthor,
     }
-    var filteredstudentarray=[];
-    if(fs.existsSync('./student.json')){
-        const studentsdata = fs.readFileSync('./student.json');
-        if(studentsdata.length !=0){
-            const studentsobj = JSON.parse(studentsdata);
-            filteredstudentarray = studentsobj.filter((student) =>student.studentId!=id);
-            if(studentsobj.length ===filteredstudentarray.length){
-                res.status(400).json({
-                    message:"id not found"
-                })
-            }else{
-                filteredstudentarray.push(studentobj);
-                fs.writeFileSync('./student.json',JSON.stringify( filteredstudentarray));
-                res.status(200).json({
-                    message:"updated successfully"
-                })
-            }
+    try {
+        const updatedPost = await post.findByIdAndUpdate(id,{$set:postObj});
+        if(updatedPost!=null){
+            res.status(200).json({
+                message:"post updated successfully",
+                updatedPost:updatedPost
+            })
         }else{
             res.status(400).json({
-                message:"data not found"
+                message:"post did'nt updated successfully/ID not found"
             })
         }
+    } catch (err) {
+        res.status(500).json({
+            message:"something went wrong",
+            error:err 
+        })
+    }  
+})
 
-    }else{
-        res.status(400).json({
-            message:"data not found"
+router.delete('/delete/:id',async(req, res)=>{
+    const id = req.params.id;
+    try {
+        const deletedPost = await post.findByIdAndDelete(id);
+        if(deletedPost==null){
+            res.status(400).json({
+                message:"post did'nt deleted  successfully/ID not found"
+            })
+        }else{
+            res.status(200).json({
+                message:"post deleted successfully",
+                deletedPost:deletedPost
+            })
+        }
+    } catch (err) {
+        res.status(500).json({
+            message:"something went wrong",
+            error:err 
         })
     }
 })
 
-router.delete('/delete/:studentId',(req, res)=>{
-    const id = req.params.studentId;
-    const studata = fs.readFileSync('./student.json');
-    if (studata.length!=0) {
-        const studentDeleteData = JSON.parse(studata);
-        const filteredstudentarrays = studentDeleteData.filter((student) =>student.studentId!=id);
-        if (filteredstudentarrays.length===studentDeleteData.length) {
-            res.status(400).json({
-                message:"id not found"
+router.get("/getbyid/:id",async (req, res) => {
+    const id =req.params.id;
+    try {
+        const postbyid = await post.findById(id);
+        console.log(postbyid);
+        if (postbyid) {
+            res.status(200).json({
+                message:"post fetched successfully",
+                postbyid:postbyid
             })
         }else{
-            fs.writeFileSync('./student.json',JSON.stringify(filteredstudentarrays));
-            res.status(200).json({
-                "message":"Deleted successfully"
+            res.status(400).json({
+                message:"post not found"
             })
-        }
-    } else {
-        res.status(400).json({
-            message:"data not found"
+        } 
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message:"something went wrong",
+            error:err
         })
     }
 })
