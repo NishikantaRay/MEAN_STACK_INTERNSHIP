@@ -1,0 +1,10 @@
+<div class="container">
+    <h2 *ngIf="!users.length else elseBlock">EXAMPLE OF *ngIf directives</h2>
+    <h2 *ngIf="!users.length">!!!NO USERS FOUND!!!</h2>
+    <ng-template #elseBlock>
+        <h2 [innerText]="'Example of *ngFor'"></h2>
+    </ng-template>
+    
+    <app-user [udata]="user" [ed]="idx"  *ngFor="let user of users;let idx =index"></app-user>
+    <app-user-form (adduserdata)="onAddUserData($event)"></app-user-form>
+</div>

@@ -1,0 +1,15 @@
+<div class="card mt-2" [class]="evenorodd%2==0?'bg-primary':'bg-danger'" >
+    <div class="card-header">
+        <h2>{{userdata.userName}}</h2>
+    </div>
+    <div class="card-body ">
+        <div class="row ">
+            <div class="col ">
+                <strong>EMAIL</strong>:{{userdata.userEmail}}
+            </div>
+            <div class="col ">
+                <strong>PHONE</strong>:{{userdata.userPhone}}
+            </div>
+        </div>
+    </div>
+</div>
