@@ -1,11 +1,9 @@
-<div class="container">
-    <h2 *ngIf="!Tasks.length else elseBlock">EXAMPLE OF *ngIf directives</h2>
-    <h2 *ngIf="!Tasks.length">!!!NO USERS FOUND!!!</h2>
+<app-taskform (adduserdata)="onAddUserData($event)"></app-taskform>
+<div class="container text-center text-light">
+    <h2 *ngIf="!Tasks.length else elseBlock"></h2>
+    <h5 class="mt-4 mb-4" *ngIf="!Tasks.length">NO Pending Task Found...</h5>
     <ng-template #elseBlock>
-        <h2 [innerText]="'Example of *ngFor'"></h2>
+    <h4 class="mt-4 mb-4" [innerText]="'Available Task'"></h4>
     </ng-template>
-
-
     <app-task [Tdata]="task" [td]="idx" *ngFor="let task of Tasks;let idx =index"></app-task>
-    <app-taskform (adduserdata)="onAddUserData($event)"></app-taskform>
 </div>

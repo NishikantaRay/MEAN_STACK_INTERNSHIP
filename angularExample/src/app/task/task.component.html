@@ -1,26 +1,22 @@
-<div class="card mt-2" #elseBlock [class]="checkBox.value=='on'?'bg-primary':'bg-danger'">
-    <div class="card-header">
-        <h2>{{userdata.userDesc}}</h2>
-    </div>
-    <div class="card-body ">
-        <div class="row ">
-            <div class="col ">
-                <strong>EMAIL</strong>:{{userdata.startDate}}
-            </div>
-            <div class="col ">
-                <div class="form-check">
-                    <input class="form-check-input"  type="checkbox"   #checkBox>
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Default checkbox
-                    </label>
+<div class="container-fluid text-light">
+    <div class="card mt-2" #elseBlock [class]="check == 1?'bg-success':'bg-danger'">            
+        <div class="card-body ">
+            <div class="row ">
+                <div class="col ">
+                    <strong>Task Description</strong> <h6>{{userdata.userDesc}}</h6>
+                </div>
+                <div class="col ">
+                    <strong>Starting Time of Task</strong><h6>{{userdata.startDate}}</h6>
+                </div>
+                <div class="col ">
+                    <div class="form-check">
+                        
+                        <label class="form-check-label" for="flexCheckDefault">
+                            <h6><input class="form-check-input" type="checkbox" (change)=onCheck($event) #checkBox>Mark it as completed</h6>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<ng-template  *ngif="checkBox.checked!=checked else elseBlock" >
-    <h2 [innerText]="'Example of *ngFor'"></h2>
-</ng-template>
-
-{{checkBox.value}}
-    <!-- [class]="evenorodd%2==0?'bg-primary':'bg-danger'" -->

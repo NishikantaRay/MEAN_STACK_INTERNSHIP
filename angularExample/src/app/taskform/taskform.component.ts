@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter,Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-taskform',
@@ -8,13 +8,13 @@ import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 export class TaskformComponent implements OnInit {
   @Output() public adduserdata = new EventEmitter();
   constructor() { }
-
+  
   ngOnInit(): void {
   }
-  onsubmit(udesc:string,udate:string){
-    const task={
-      userDesc:udesc,
-      startDate:udate
+  onsubmit(udesc: string, udate: string) {
+    const task = {
+      userDesc: udesc,
+      startDate: udate
     }
 
     this.adduserdata.emit(task);

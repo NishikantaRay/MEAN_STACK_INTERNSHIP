@@ -1,16 +1,24 @@
-<div class="card h-100">
-    <div class="card-header mt-4 text-center">Form example</div>
-    <div class="card-body">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Task description" #Taskdesc />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-2 col-12"></div>
+        <div class="col-md-8 col-12">
+            <div class="card mt-4 shadow-lg p-3 mb-5 bg-danger rounded">
+                <div class="mt-4 text-center text-light"><h3>TASK MANAGER</h3></div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Task description" #Taskdesc required />
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Starting Time</span>
+                        <input type="time" class="form-control" #date aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" required>
+                    </div>
+                    <div class="input-group mb-3 text-center ">
+                        <button class="btn btn-light btn-sub btn-md mr-auto" (click)="onsubmit(Taskdesc.value,date.value)">Submit</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Time</span>
-            <input type="time" class="form-control" #date aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm">
-        </div>
-        <div class="input-group mb-3 text-center">
-            <button class="btn btn-primary btn-lg" (click)="onsubmit(Taskdesc.value,date.value)">Submit</button>
-        </div>
+        <div class="col-md-2 col-12"></div>
     </div>
 </div>
