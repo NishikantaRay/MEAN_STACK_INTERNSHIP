@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './user/user.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { TaskformComponent } from './taskform/taskform.component';
+import { TaskmanagerComponent } from './taskmanager/taskmanager.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { UserFormComponent } from './user-form/user-form.component';
     HomeComponent,
     UsersComponent,
     UserComponent,
-    UserFormComponent
+    UserFormComponent,
+    TaskformComponent,
+    TaskmanagerComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,

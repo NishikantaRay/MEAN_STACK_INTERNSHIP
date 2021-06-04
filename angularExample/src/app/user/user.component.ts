@@ -7,7 +7,7 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   @Input('udata') public userdata:any
-  @Input('ed') public evenorodd:any
+  @Input('ed') public evenorodd:any=1
   constructor() { }
 
   ngOnInit(): void {
