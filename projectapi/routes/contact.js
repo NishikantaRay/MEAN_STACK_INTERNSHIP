@@ -4,13 +4,22 @@ const contact = require('../models/contact');
 
 // Get all the contacts from the database
 
-router.get('/', async(req, res)=> {
+router.get('/:userid', async(req, res)=> {
+    let id = req.params.userid;
     try {
-        const contacts = await contact.find();
-        res.status(200).json({
-            message:"ContactList fetched successfully",
-            contactData:contacts
-        })
+        const contacts = await contact.find({contactUserId:id});
+        // console.log(contacts.length)
+        if(contacts.length!==0){
+            console.log(contacts)
+            res.status(200).json({
+                message:"ContactList fetched successfully",
+                contactData:contacts
+            })
+        }else{
+            res.status(404).json({
+                message:"Not found",
+            })
+        }
     } catch (err) {
         res.status(500).json({
             message:"something went wrong",
@@ -22,13 +31,14 @@ router.get('/', async(req, res)=> {
 
 // Add new contacts to the database
 
-router.post("/save",async(req,res)=>{
+router.post("/add",async(req,res)=>{
     console.log(req.body);
     const contactObj ={
         contactName : req.body.cname,
         contactEmail : req.body.cemail,
         contactPhone : req.body.cphone,
         contactType : req.body.ctype,
+        contactUserId : req.body.cId
     }
     try {
         const contacts = new contact(contactObj);
@@ -54,10 +64,10 @@ router.put("/update/:id",async(req,res)=>{
         contactName : req.body.cname,
         contactEmail : req.body.cemail,
         contactPhone : req.body.cphone,
-        contactType : req.body.ctype,
+        contactType : req.body.ctype
     }
     try {
-        const updatedcontact = await contact.findByIdAndUpdate(id,{$set:contactObjs});
+        const updatedcontact = await contact.findByIdAndUpdate(id,{$set:contactObjs},{useFindAndModify: false});
         if(updatedcontact!=null){
             res.status(200).json({
                 message:"contact updated successfully",
@@ -132,7 +142,7 @@ router.put("/updateBymail/:email",async(req,res)=>{
         contactName : req.body.cname,
         contactEmail : req.body.cemail,
         contactPhone : req.body.cphone,
-        contactType : req.body.ctype,
+        contactType : req.body.ctype
     }
     try {
         const updatedcontact = await contact.findOneAndUpdate(Email,{$set:contactObjs},{useFindAndModify: false});

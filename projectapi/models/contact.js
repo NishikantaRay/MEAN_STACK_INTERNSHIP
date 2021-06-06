@@ -20,13 +20,11 @@ const contactSchema = mongoose.Schema({
     contactType:{
         type:String,
         required:true
+    },
+    contactUserId : {
+        type : Number,
+        required : true
     }
 });
 
 module.exports=mongoose.model('contact',contactSchema);
-
-// Contact name
-// Contact email
-// Contact phone
-// Contact Type
-// Contact Photo
