@@ -4,7 +4,7 @@ const authController = require("../controllers/auth.controller");
 
 // Signin to the application
 
-router.post("/signIn/:email",authController.signIN);
+router.post("/login",authController.signIN);
 
 // register to the application
 

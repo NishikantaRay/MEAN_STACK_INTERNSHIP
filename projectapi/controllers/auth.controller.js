@@ -1,24 +1,46 @@
 const user = require("../models/auth");
 const bcrypt = require('bcryptjs');
 const Joi = require('joi');
+var jwt = require('jsonwebtoken');
+const secretKey="eeefdfdg";
 // Signin to the application
 
 exports.signIN=async (req,res)=>{
-    let userEmail = req.params.email;
+    const loginSchema = Joi.object({
+        email:Joi.string().required(),
+        password:Joi.string().required()
+    })
     try{
-        const userData = await user.findOne({email : userEmail});
-        if(userData){
-            res.status(200).json({
-                meassage : "User data found",
-                userInfo : userData
+        const loginfield = await loginSchema.validateAsync(req.body);
+        const userData = await user.findOne({email : loginfield.email});
+        if(!userData){
+            res.status(400).json({
+                message : "username/password not found",
             });
         }
         else{
-            res.status(404).json({
-                message : "user not found",
-            });
+            const is_match = await bcrypt.compare(loginfield.password,userData.password);
+            if (!is_match) {
+                res.status(400).json({
+                    message : "username/password not found",
+                });
+            } else {
+                const payload={
+                    userdata:{
+                        id:userData._id
+                    }
+                }
+                const token = await jwt.sign(payload,secretKey,{expiresIn:7200})
+                res.status(200).json({
+                    message : "Logged In",
+                    userData:{id:userData._id,name:userData.name},
+                    token
+                });
+
+            }
         }
     }catch(err){
+        console.log(err);
         res.status(500).json({
             message : "something went wrong",
             error : err

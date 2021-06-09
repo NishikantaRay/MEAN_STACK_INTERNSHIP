@@ -1,11 +1,10 @@
 const contact = require('../models/contact');
+const Joi = require('joi');
 
 // Get the contacts from the database
-
 exports.getContact = async(req, res)=> {
-    let id = req.params.userid;
     try {
-        const contacts = await contact.find({contactUserId:id});
+        const contacts = await contact.find().populate('contactUserId');
         if(contacts.length!==0){
             console.log(contacts)
             res.status(200).json({
@@ -30,15 +29,16 @@ exports.getContact = async(req, res)=> {
 
 exports.addContact=async(req,res)=>{
     console.log(req.body);
-    const contactObj ={
-        contactName : req.body.cname,
-        contactEmail : req.body.cemail,
-        contactPhone : req.body.cphone,
-        contactType : req.body.ctype,
-        contactUserId : req.body.cId
-    }
+    const contactObj =Joi.object({
+        contactName : Joi.string().required().min(3).alphanum(),
+        contactEmail : Joi.string().email().required(),
+        contactPhone : Joi.string().length(10).required(),
+        contactType : Joi.string().required(),
+        contactUserId : Joi.string().required()
+    })
     try {
-        const contacts = new contact(contactObj);
+        const contactfield = await contactObj.validateAsync(req.body);
+        const contacts = new contact(contactfield);
         console.log(contacts);
         await contacts.save();
         res.status(200).json({
@@ -46,6 +46,7 @@ exports.addContact=async(req,res)=>{
             contactData:contacts
         })
     } catch (err) {
+        console.log(err);
         res.status(500).json({
             message:"something went wrong",
             error:err 
@@ -57,14 +58,15 @@ exports.addContact=async(req,res)=>{
 
 exports.updateById=async(req,res)=>{
     const id = req.params.id;
-    const contactObjs ={
-        contactName : req.body.cname,
-        contactEmail : req.body.cemail,
-        contactPhone : req.body.cphone,
-        contactType : req.body.ctype
-    }
+    const contactObjs =Joi.object({
+        contactName : Joi.string().required().min(3).alphanum(),
+        contactEmail : Joi.string().email().required(),
+        contactPhone : Joi.string().length(10).required(),
+        contactType : Joi.string().required()
+    })
     try {
-        const updatedcontact = await contact.findByIdAndUpdate(id,{$set:contactObjs},{useFindAndModify: false});
+        const updatefield = await contactObjs.validateAsync(req.body);
+        const updatedcontact = await contact.findByIdAndUpdate(id,{$set:updatefield},{useFindAndModify: false});
         if(updatedcontact!=null){
             res.status(200).json({
                 message:"contact updated successfully",
@@ -135,14 +137,15 @@ exports.deleteByMail=async(req, res)=>{
 
 exports.updateByMail=async(req,res)=>{
     const Email = req.params.email;
-    const contactObjs ={
-        contactName : req.body.cname,
-        contactEmail : req.body.cemail,
-        contactPhone : req.body.cphone,
-        contactType : req.body.ctype
-    }
+    const contactObjs =Joi.object({
+        contactName : Joi.string().required().min(3).alphanum(),
+        contactEmail : Joi.string().email().required(),
+        contactPhone : Joi.string().length(10).required(),
+        contactType : Joi.string().required()
+    })
     try {
-        const updatedcontact = await contact.findOneAndUpdate(Email,{$set:contactObjs},{useFindAndModify: false});
+        const updatefields = await contactObjs.validateAsync(req.body);
+        const updatedcontact = await contact.findOneAndUpdate(Email,{$set:updatefields},{useFindAndModify: false});
         if(updatedcontact!=null){
             res.status(200).json({
                 message:"contact updated successfully",
@@ -159,4 +162,28 @@ exports.updateByMail=async(req,res)=>{
             error:err 
         })
     }  
+}
+
+exports.getUserContact=async (req,res)=>{
+    try {
+        const user =await contact.find({contactUserId:req.params.contactId}).populate('contactUserId');
+        console.log(user);
+        if(user.length!==0){
+            console.log(user);
+            res.status(200).json({
+                message:"ContactList fetched successfully",
+                contactData:user
+            })
+        }else{
+            res.status(404).json({
+                message:"Not found",
+            })
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message:"something went wrong",
+            error:err 
+        })
+    }
 }

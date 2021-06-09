@@ -1,10 +1,12 @@
 const express = require('express');
 const router =express.Router();
-
-const contactController=require('../controllers/contact.controller')
+const xauth = require("../middleware/auth");
+const contactController=require('../controllers/contact.controller');
+const multer  = require('multer');
+var upload = multer({ dest: 'uploads/' })
 // Get the contacts from the database
 
-router.get('/:userid',contactController.getContact);
+router.get('/',contactController.getContact);
 
 // Add new contacts to the database
 
@@ -26,6 +28,15 @@ router.delete('/deleteBymail/:email',contactController.deleteByMail)
 
 router.put("/updateBymail/:email",contactController.updateByMail)
 
+// get specific contact details
 
+router.get('/:contactId',contactController.getUserContact);
 
+// image upload using multer
+
+router.post('/upload',upload.single('imagefile'),(req,res)=>{
+    res.status(200).json({
+        details:req.file
+    })
+})
 module.exports=router;

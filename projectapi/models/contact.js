@@ -13,17 +13,13 @@ const contactSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    contactPhone:{
-        type:String,
-        required:true
-    },
     contactType:{
         type:String,
         required:true
     },
     contactUserId : {
-        type : Number,
-        required : true
+        type : mongoose.Schema.Types.ObjectId,
+        ref:'users'
     }
 });
 
