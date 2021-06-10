@@ -1,0 +1,40 @@
+<div class="main">
+    <div class="form">
+        <h2>SignUp</h2>
+        
+        <form #regForm="ngForm" (ngSubmit)="onSubmitForm()">
+            <div [class]="isError?'alert alert-danger':'d-none'">{{message}}</div>
+            <div [class]="isSuccess?'alert alert-success':'d-none'">{{message}}</div>
+            <div class="input">
+                <div class="inputbox">
+                    <input type="text" required #myname="ngModel" [class.is-invalid]="myname.errors&&myname.touched" name="Name" placeholder="Enter your Name" [(ngModel)]="userin.name">
+                    <div *ngIf="myname.errors&&myname.touched">
+                        <div class="text-danger" *ngIf="myname.errors.required">FullName is required</div>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <input type="email" required #emailmy="ngModel" [class.is-invalid]="myname.errors&&myname.touched" name="mail" placeholder="Enter your Email" [(ngModel)]="userin.email">
+                    <div *ngIf="myname.errors&&myname.touched">
+                        <div class="text-danger" *ngIf="myname.errors.required">Email is required</div>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <input type="password" required #mypass="ngModel" [class.is-invalid]="myname.errors&&myname.touched" name="Password" placeholder="Enter your Password" [(ngModel)]="userin.password" >
+                    <div *ngIf="myname.errors&&myname.touched">
+                        <div class="text-danger" *ngIf="myname.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <input type="password" required name="Password" placeholder="Confirm your Password">
+                    <div *ngIf="myname.errors&&myname.touched">
+                        <div class="text-danger" *ngIf="myname.errors.required">Confirm Password is required</div>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <button type="submit" name="Signup" id="signin" [disabled]="regForm.form.invalid">Sign Up</button>
+                </div>
+            </div>
+            <p class="forget">Already have an account?<a routerLink="/login">Sign In Here</a></p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="main">
+    <div class="form">
+        <h2>Login</h2>
+        <form #logForm="ngForm" (ngSubmit)="onLoginForm()">
+            <div [class]="isError?'alert alert-danger':'d-none'">{{message}}</div>
+            <div [class]="isSuccess?'alert alert-success':'d-none'">{{message}}</div>
+            <div class="input">
+                <div class="inputbox">
+                    <label for="mail">Email</label>
+                    <input type="email" #myemail="ngModel" required name="mail" placeholder="Enter your Email" [(ngModel)]="email">
+                </div>
+                <div class="inputbox">
+                    <label for="Password">Password</label>
+                    <input type="password"  #myPass="ngModel"  required name="Password" placeholder="Enter your Password" [(ngModel)]="password">
+                </div>
+                <div class="inputbox">
+                    <button type="submit" name="validation" id="signin">Sign In</button>
+                </div>
+            </div>
+            <p class="forget">Not a Member?<a routerLink="/register">Sign up Here</a></p>
+        </form>
+    
+    </div>
+</div>

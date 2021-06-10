@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-dash navbar-dark">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" style="padding-left:100%;font-weight: 900;">Home</a>
+        </li>
+      </ul>
+      <div>
+        <div class="btn btn-outline-light" routerLink="/contactform">Add new Contacts</div>&nbsp;
+      </div>
+      <form class="d-flex">
+        <button class="btn btn-outline-light" type="submit">Logout</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-3 col-12 back ">
+      <div class="img-section text-center">
+        <img src="assets\image3.jpeg" id="imgsec" width="200" height="200" alt="user image">
+      </div>
+      <div class="info text-light text-center mt-3">
+        <h4>john</h4>
+        <span>john@gmail.com</span>
+      </div>
+
+      <form class="text-center formsec mt-4"><br>
+        <input type="file" name="uploadfile" id="img" style="display:none;"/>
+        <label for="img" style="color: #82E0AA;">Click me to upload image</label><br>
+        <button class="btn sub btn-outline-light mt-2" type="submit">Submit</button>
+      </form>
+
+    </div>
+    <div class="col-md-9 col-12">
+      <div class="inputbox">
+        <input type="search" name="sercgh" id="signin">
+        <button type="submit" id="but"><i class="fas fa-search"></i></button>
+     </div>
+     <div class="tableheader mt-5">
+      <div class="container inputbox">
+        <div class="row text-center"  id="tablebox">
+          <div class="col-md-2">
+            <h6>Name</h6>
+          </div>
+          <div class="col-md-2">
+            <h6>Email</h6>
+          </div>
+          <div class="col-md-2">
+            <h6>Phone</h6>
+          </div>
+          <div class="col-md-2">
+            <h6>Type</h6>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row mt-3 text-center" id="contentbox">
+          <div class="col-md-2">
+            <h6>Nishikanta</h6>
+          </div>
+          <div class="col-md-2">
+            <h6>Nishi@gmail.com</h6>
+          </div>
+          <div class="col-md-2">
+            <h6>7473799290</h6>
+          </div>
+          <div class="col-md-2">
+            <h6>Home</h6>
+          </div>
+          <div class="col-md-2 mt-1">
+            <button class="btn btn-outline-light" routerLink="/updateform" type="submit">Update</button>
+          </div>
+          <div class="col-md-2 mt-1">
+            <button class="btn btn-outline-danger" type="submit">Delete</button>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>
