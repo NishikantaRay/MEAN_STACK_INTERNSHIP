@@ -10,15 +10,15 @@ router.get('/',contactController.getContact);
 
 // Add new contacts to the database
 
-router.post("/add",contactController.addContact);
+router.post("/add",xauth,contactController.addContact);
 
 // Update a contact list by id
 
-router.put("/update/:id",contactController.updateById);
+router.put("/update/:id",xauth,contactController.updateById);
 
 // Delete a contact list by id
 
-router.delete('/delete/:id',contactController.deleteById)
+router.delete('/delete/:id',xauth,contactController.deleteById)
 
 // Delete by mail a contact list
 
@@ -31,6 +31,8 @@ router.put("/updateBymail/:email",contactController.updateByMail)
 // get specific contact details
 
 router.get('/:contactId',xauth,contactController.getUserContact);
+
+router.get("/contactById/:contactId",xauth,contactController.getContactById);
 
 // image upload using multer
 

@@ -42,7 +42,7 @@ exports.addContact=async(req,res)=>{
         console.log(contacts);
         await contacts.save();
         res.status(200).json({
-            message:"contact fetched successfully" ,
+            message:"contact Added successfully" ,
             contactData:contacts
         })
     } catch (err) {
@@ -185,5 +185,23 @@ exports.getUserContact=async (req,res)=>{
             message:"something went wrong",
             error:err 
         })
+    }
+}
+
+exports.getContactById = async(req,res)=>{
+    let contactId = req.params.contactId;
+    try{
+        const getContact = await contact.findById(contactId);
+        res.status(200).json({
+            message : "Contact fetched successfully",
+            contact : getContact
+        });
+    }
+    catch(err){
+        console.log(err);
+        res.status(200).json({
+            message : "Something went wrong",
+            error : err
+        });
     }
 }
