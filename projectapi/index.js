@@ -5,12 +5,13 @@ const logger = require("./middleware/logger");
 const cors = require('cors');
 const express = require('express');
 const app=express();
-app.use(express.json());
-dbConn();
 const corsOption={
     "origin":"*"
 }
 app.use(cors(corsOption));
+app.use(express.json());
+dbConn();
+
 app.use(logger);
 app.use('/api/auth',userRoutes);
 app.use('/api/post',contactRoutes);

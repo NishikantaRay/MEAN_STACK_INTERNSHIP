@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import {User} from '../user';
-import {UserService} from '../user.service'
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,9 +12,14 @@ export class LoginComponent implements OnInit {
   public isSuccess:boolean=false;
   public email!:string;
   public password!:string;
-  constructor(private _userService:UserService) { }
+  constructor(private _userService:UserService,private _router:Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token')!=null){
+      this._router.navigate(['/home']);
+    }else{
+      localStorage.clear();
+    }
   }
   onLoginForm(){
     const logininfo={
@@ -30,7 +35,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token',response.token);
       localStorage.setItem('userID',response.userData.id);
       localStorage.setItem('userName',response.userData.name);
-      
+      this._router.navigate(['/home']);
     },err=>{
       this.message=err.error.message;
       this.isSuccess=false;

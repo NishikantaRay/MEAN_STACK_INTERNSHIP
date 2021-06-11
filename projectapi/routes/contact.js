@@ -30,7 +30,7 @@ router.put("/updateBymail/:email",contactController.updateByMail)
 
 // get specific contact details
 
-router.get('/:contactId',contactController.getUserContact);
+router.get('/:contactId',xauth,contactController.getUserContact);
 
 // image upload using multer
 

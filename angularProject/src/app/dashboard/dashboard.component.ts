@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {DashService} from '../dash.service'
+import {DashService} from '../dash.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -7,15 +8,26 @@ import {DashService} from '../dash.service'
 })
 export class DashboardComponent implements OnInit {
   public contactData:any[]=[];
-  constructor(private _ps:DashService) { }
+  constructor(private _ps:DashService,private _router:Router) {
+   }
 
   ngOnInit(): void {
-    this._ps.listcontactbyuser().subscribe(Response=>{
-      console.log(Response);
-      
-    },err=>{
-      console.log(err);
-    } )
+    if(localStorage.getItem('token')!=null){
+      this._ps.listcontactbyuser().subscribe(Response=>{
+        console.log(Response);
+        
+      },err=>{
+        console.log(err);
+      } )
+    }else{
+     
+      localStorage.clear();
+      this._router.navigate(['/login']);
+    }
+    
   }
-
+  logout():void{
+    localStorage.clear();
+    this._router.navigate(['/login']);
+  }
 }
