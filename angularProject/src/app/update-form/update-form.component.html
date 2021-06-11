@@ -1,24 +1,37 @@
-
-
 <div class="main">
-    <div class="form">
-        <h2>Update Form</h2>
-        <form action="#">
+    <div class="form" >
+        <h2>Contact Form</h2>
+        <form #updateForm="ngForm" (ngSubmit)="addUpdateForm()">
+            <div [class]="isError?'alert alert-danger':'d-none'">{{message}}</div>
+            <div [class]="isSuccess?'alert alert-success':'d-none'">{{message}}</div>
             <div class="input">
                 <div class="inputbox">
-                    <input type="text" name="Name" placeholder="Enter your Name">
+                    <input type="text" name="Name" placeholder="Enter your Name" required #myname="ngModel" [class.is-invalid]="myname.errors&&myname.touched" [(ngModel)]="contactd.contactName">
+                    <div *ngIf="myname.errors&&myname.touched">
+                        <div class="text-danger" *ngIf="myname.errors.required">FullName is required</div>
+                    </div>
                 </div>
                 <div class="inputbox">
-                    <input type="email" name="mail" placeholder="Enter your Email">
+                    <input type="email" name="mail" placeholder="Enter your Email"  email required #emailmy="ngModel" [class.is-invalid]="myname.errors&&myname.touched"  [(ngModel)]="contactd.contactEmail">
+                    <div *ngIf="emailmy.errors&&emailmy.touched">
+                        <div class="text-danger" *ngIf="emailmy.errors.required">Email is required</div>
+                    </div>
                 </div>
                 <div class="inputbox">
-                    <input type="text" name="phone" placeholder="Enter your Phone Number">
+                    <input type="text" name="phone" placeholder="Enter your Phone Number" required #phonemy="ngModel" [class.is-invalid]="phonemy.errors&&phonemy.touched"  [(ngModel)]="contactd.contactPhone">
+                    <div *ngIf="phonemy.errors&&phonemy.touched">
+                        <div class="text-danger" *ngIf="phonemy.errors.required">Phone Number is required</div>
+                        
+                    </div>
                 </div>
                 <div class="inputbox">
-                    <input type="text" name="Type" placeholder="Enter your Contact Type">
+                    <input type="text" name="Type" placeholder="Enter your Contact Type" required #type="ngModel" [class.is-invalid]="type.errors&&type.touched"  [(ngModel)]="contactd.contactType">
+                    <div *ngIf="type.errors&&type.touched">
+                        <div class="text-danger" *ngIf="type.errors.required">Contact type is required</div>
+                    </div>
                 </div>
                 <div class="inputbox">
-                    <button type="submit" name="validation" id="signin">Update</button>
+                    <button type="submit" name="validation" id="signin" [disabled]="updateForm.form.invalid">Submit</button>
                 </div>
             </div>
         </form>

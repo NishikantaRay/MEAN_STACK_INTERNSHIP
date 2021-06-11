@@ -13,4 +13,14 @@ export class DashService {
       headers:new HttpHeaders().set('x-auth-token',this.authtoken)
     })
   }
+  updateContact(id: string, contact: any) {
+    return this._http.put<{message: string, contactData: any}>(environment.baseUrlcontact + '/update/' + id, contact,{
+      headers: new HttpHeaders().set('x-auth-token', this.authtoken)
+    })
+  }
+  getSingleContact(id: string) {
+    return this._http.get<{message: string, contactData: any}>(environment.baseUrlcontact + '/contactById/' + id,{
+      headers: new HttpHeaders().set('x-auth-token', this.authtoken)
+    })
+  }
 }

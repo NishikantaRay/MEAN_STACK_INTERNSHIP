@@ -3,7 +3,7 @@ export class Update {
         public contactName:string,
         public contactEmail:string,
         public contactPhone:string,
-        public contactType:string,
-        public contactUserId : string
+        public contactType:string
+        // public contactUserId : string
     ){}
 }
