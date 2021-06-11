@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  public contactData:any[]=[];
+  public Data:any[]=[];
   constructor(private _ps:DashService,private _router:Router) {
    }
 
@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
     if(localStorage.getItem('token')!=null){
       this._ps.listcontactbyuser().subscribe(Response=>{
         console.log(Response);
-        
+        this.Data=Response.contactData;
       },err=>{
         console.log(err);
       } )

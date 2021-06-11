@@ -62,18 +62,18 @@
           <div class="col-md-2"></div>
           <div class="col-md-2"></div>
         </div>
-        <div class="row mt-3 text-center" id="contentbox">
+        <div class="row mt-3 text-center" id="contentbox" *ngFor="let d of Data">
           <div class="col-md-2">
-            <h6>Nishikanta</h6>
+            <h6>{{d.contactName}}</h6>
           </div>
           <div class="col-md-2">
-            <h6>Nishi@gmail.com</h6>
+            <h6>{{d.contactEmail}}</h6>
           </div>
           <div class="col-md-2">
-            <h6>7473799290</h6>
+            <h6>{{d.contactPhone}}</h6>
           </div>
           <div class="col-md-2">
-            <h6>Home</h6>
+            <h6>{{d.contactType}}</h6>
           </div>
           <div class="col-md-2 mt-1">
             <button class="btn btn-outline-light" routerLink="/updateform" type="submit">Update</button>

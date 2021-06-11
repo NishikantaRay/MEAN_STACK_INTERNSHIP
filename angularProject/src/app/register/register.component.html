@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="inputbox">
-                    <input type="email" email required #emailmy="ngModel" [class.is-invalid]="myname.errors&&myname.touched" name="mail" placeholder="Enter your Email" [(ngModel)]="userin.email">
+                    <input type="email" required #emailmy="ngModel" [class.is-invalid]="myname.errors&&myname.touched" name="mail" placeholder="Enter your Email" [(ngModel)]="userin.email">
                     <div *ngIf="myname.errors&&myname.touched">
                         <div class="text-danger" *ngIf="myname.errors.required">Email is required</div>
                     </div>

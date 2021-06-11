@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+// import { ContactComponent } from './contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import {FormsModule} from '@angular/forms';
     ContactFormComponent,
     UpdateFormComponent,
     DashboardComponent,
-    ErrorComponent
+    ErrorComponent,
+    // ContactComponent
   ],
   imports: [
     BrowserModule,
