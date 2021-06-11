@@ -8,7 +8,9 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   public Data:any[]=[];
-  
+  public message!:string;
+  public isError:boolean=false;
+  public isSuccess:boolean=false;
   constructor(private _ps:DashService,private _router:Router) {
    }
 
@@ -37,9 +39,13 @@ export class DashboardComponent implements OnInit {
   }
   onDeleteContact(contact:any){
     this._ps.deleteContact(contact._id).subscribe(res=>{
-      alert(res.message);
+      this.message=res.message;
+      this.isSuccess=true;
+      this.isError=false;
     }, err=>{
-      alert(err.error.message);
+      this.message=err.error.message;
+        this.isSuccess=false;
+        this.isError=true;
     });
     this.loadContacts();
   }

@@ -44,6 +44,8 @@
         <input type="search" name="sercgh" id="signin">
         <button type="submit" id="but"><i class="fas fa-search"></i></button>
       </div>
+      <div class="mt-3" [class]="isError?'alert alert-info':'d-none'">{{message}}</div>
+            <div class="mt-3" [class]="isSuccess?'alert alert-danger':'d-none'">{{message}}</div>
       <div class="tableheader mt-5">
         <div class="container inputbox">
           <div class="row text-center" id="tablebox">
