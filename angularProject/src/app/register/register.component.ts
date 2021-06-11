@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
   public message!:string;
   public isError:boolean=false;
   public isSuccess:boolean=false;
+  public chkpass:string = '';
   constructor(private _userService:UserService) { }
 
   ngOnInit(): void {
@@ -27,5 +28,11 @@ export class RegisterComponent implements OnInit {
       this.isSuccess=false;
       this.isError=true;
     })
+  }
+  pass() : boolean {
+    if(this.chkpass != this.userin.password){
+      return true;
+    }
+    return false;
   }
 }

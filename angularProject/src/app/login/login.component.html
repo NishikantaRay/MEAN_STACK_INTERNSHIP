@@ -7,14 +7,23 @@
             <div class="input">
                 <div class="inputbox">
                     <label for="mail">Email</label>
-                    <input type="email" #myemail="ngModel" required name="mail" placeholder="Enter your Email" [(ngModel)]="email">
+                    <input type="email" email required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  [class.is-invalid]="myemail.errors && myemail.touched" #myemail="ngModel" required name="mail" placeholder="Enter your Email" [(ngModel)]="email">
+                    <div *ngIf="myemail.touched">
+                        <div class="text-danger" required *ngIf="myemail.errors || !myemail.valid">A valid Email is required</div>
+                    </div>
                 </div>
                 <div class="inputbox">
                     <label for="Password">Password</label>
-                    <input type="password"  #myPass="ngModel"  required name="Password" placeholder="Enter your Password" [(ngModel)]="password">
+                    <input type="password" minlength="6"  [class.is-invalid]="myPass.errors && myPass.touched" #myPass="ngModel"  required name="Password" placeholder="Enter your Password" [(ngModel)]="password">
+                    <div *ngIf="myPass.errors && myPass.touched">
+                        <div class="text-danger" *ngIf="myPass.errors.required! else check">Password is required</div>
+                        <ng-template #check>
+                            <div class="text-danger" *ngIf="myPass.errors.minlength">Password must be at least 6 characters</div>
+                        </ng-template>
+                    </div>
                 </div>
                 <div class="inputbox">
-                    <button type="submit" name="validation" id="signin">Sign In</button>
+                    <button type="submit" [disabled]="logForm.form.invalid" name="validation" id="signin">Sign In</button>
                 </div>
             </div>
             <p class="forget">Not a Member?<a routerLink="/register">Sign up Here</a></p>

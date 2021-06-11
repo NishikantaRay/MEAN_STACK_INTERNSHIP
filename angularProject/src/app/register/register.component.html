@@ -1,37 +1,46 @@
 <div class="main">
     <div class="form">
         <h2>SignUp</h2>
-        
+
         <form #regForm="ngForm" (ngSubmit)="onSubmitForm()">
             <div [class]="isError?'alert alert-danger':'d-none'">{{message}}</div>
             <div [class]="isSuccess?'alert alert-success':'d-none'">{{message}}</div>
             <div class="input">
                 <div class="inputbox">
-                    <input type="text" required #myname="ngModel" [class.is-invalid]="myname.errors&&myname.touched" name="Name" placeholder="Enter your Name" [(ngModel)]="userin.name">
+                    <input type="text" required #myname="ngModel" [class.is-invalid]="myname.errors&&myname.touched"
+                        name="Name" placeholder="Enter your Name" [(ngModel)]="userin.name">
                     <div *ngIf="myname.errors&&myname.touched">
                         <div class="text-danger" *ngIf="myname.errors.required">FullName is required</div>
                     </div>
                 </div>
                 <div class="inputbox">
-                    <input type="email" required #emailmy="ngModel" [class.is-invalid]="myname.errors&&myname.touched" name="mail" placeholder="Enter your Email" [(ngModel)]="userin.email">
+                    <input type="email" required #emailmy="ngModel" [class.is-invalid]="myname.errors&&myname.touched"
+                        name="mail" placeholder="Enter your Email" [(ngModel)]="userin.email">
                     <div *ngIf="myname.errors&&myname.touched">
                         <div class="text-danger" *ngIf="myname.errors.required">Email is required</div>
                     </div>
                 </div>
                 <div class="inputbox">
-                    <input type="password" required #mypass="ngModel" [class.is-invalid]="myname.errors&&myname.touched" name="Password" placeholder="Enter your Password" [(ngModel)]="userin.password" >
-                    <div *ngIf="myname.errors&&myname.touched">
-                        <div class="text-danger" *ngIf="myname.errors.required">Password is required</div>
+                    <input #upass="ngModel" [(ngModel)]="userin.password"
+                        [class.is-invalid]="upass.errors && upass.touched" type="password" minlength="6"
+                        class="form-control" value="" name="password" placeholder="Enter Password" required="">
+                    <div *ngIf="upass.errors && upass.touched">
+                        <div class="text-danger" *ngIf="upass.errors.required">Password is required</div>
+                        <div class="text-danger" *ngIf="upass.errors.minlength">Password must be at least 6 characters
+                        </div>
                     </div>
                 </div>
                 <div class="inputbox">
-                    <input type="password" required name="Password" placeholder="Confirm your Password">
-                    <div *ngIf="myname.errors&&myname.touched">
-                        <div class="text-danger" *ngIf="myname.errors.required">Confirm Password is required</div>
-                    </div>
+                    <input #cpass="ngModel" [(ngModel)]="chkpass"
+                        [class.is-invalid]="cpass.touched && (chkpass != upass.value)" type="password"
+                        class="form-control" name="confpass" placeholder="Confirm Password" minlength="6" required="">
+                </div>
+                <div *ngIf="cpass.touched && cpass.dirty">
+                    <div class="text-danger" *ngIf="chkpass != upass.value">Please confirm your password</div>
                 </div>
                 <div class="inputbox">
-                    <button type="submit" name="Signup" id="signin" [disabled]="regForm.form.invalid">Sign Up</button>
+                    <button type="submit" name="Signup" id="signin" [disabled]="regForm.form.invalid"
+                        [disabled]="pass">Sign Up</button>
                 </div>
             </div>
             <p class="forget">Already have an account?<a routerLink="/login">Sign In Here</a></p>

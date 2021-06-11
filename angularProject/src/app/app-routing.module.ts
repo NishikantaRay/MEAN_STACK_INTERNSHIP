@@ -15,7 +15,7 @@ const routes: Routes = [];
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'contactform', component: ContactFormComponent },
-      { path: 'updateform', component: UpdateFormComponent },
+      { path: 'updateform/:id', component: UpdateFormComponent },
       { path: 'home', component: DashboardComponent },
       { path: 'error', component: ErrorComponent },
       { path: '',   redirectTo: '/login', pathMatch: 'full' },

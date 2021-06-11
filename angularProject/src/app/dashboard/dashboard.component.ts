@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   public Data:any[]=[];
+  
   constructor(private _ps:DashService,private _router:Router) {
    }
 
