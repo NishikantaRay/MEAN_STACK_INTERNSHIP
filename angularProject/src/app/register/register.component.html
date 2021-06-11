@@ -36,7 +36,7 @@
                         class="form-control" name="confpass" placeholder="Confirm Password" minlength="6" required="">
                 </div>
                 <div *ngIf="cpass.touched && cpass.dirty">
-                    <div class="text-danger" *ngIf="chkpass != upass.value">Please confirm your password</div>
+                    <div class="text-success" *ngIf="chkpass == upass.value">Matching</div>
                 </div>
                 <div class="inputbox">
                     <button type="submit" name="Signup" id="signin" [disabled]="regForm.form.invalid"

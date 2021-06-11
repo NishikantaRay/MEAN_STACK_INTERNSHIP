@@ -30,7 +30,6 @@ export class UpdateFormComponent implements OnInit {
       this.contactd.contactEmail = res.contactData.email;
       this.contactd.contactPhone = res.contactData.phone;
       this.contactd.contactType = res.contactData.type;
-      // this.contactd.contactUserId = this.getid;
     }, err=>{
       console.log(err);
     })

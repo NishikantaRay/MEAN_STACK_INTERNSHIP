@@ -23,4 +23,9 @@ export class DashService {
       headers: new HttpHeaders().set('x-auth-token', this.authtoken)
     })
   }
+  deleteContact(id: string) {
+    return this._http.delete<{message: string}>(environment.baseUrlcontact + '/delete/' + id,{
+      headers: new HttpHeaders().set('x-auth-token', this.authtoken)
+    })
+  }
 }

@@ -4,6 +4,5 @@ export class Update {
         public contactEmail:string,
         public contactPhone:string,
         public contactType:string
-        // public contactUserId : string
     ){}
 }

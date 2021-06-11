@@ -14,12 +14,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     if(localStorage.getItem('token')!=null){
-      this._ps.listcontactbyuser().subscribe(Response=>{
-        console.log(Response);
-        this.Data=Response.contactData;
-      },err=>{
-        console.log(err);
-      } )
+      this.loadContacts();
     }else{
      
       localStorage.clear();
@@ -28,8 +23,24 @@ export class DashboardComponent implements OnInit {
     
     
   }
+  loadContacts(){
+    this._ps.listcontactbyuser().subscribe(Response=>{
+      console.log(Response);
+      this.Data=Response.contactData;
+    },err=>{
+      console.log(err);
+    } )
+  }
   logout():void{
     localStorage.clear();
     this._router.navigate(['/login']);
+  }
+  onDeleteContact(contact:any){
+    this._ps.deleteContact(contact._id).subscribe(res=>{
+      alert(res.message);
+    }, err=>{
+      alert(err.error.message);
+    });
+    this.loadContacts();
   }
 }
